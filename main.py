@@ -7,6 +7,11 @@ while True:
     
     password = input("Veuillez saisir un mot de passe : ")
 
+    data = {
+    "user" : user,
+    "password" : password
+    }
+
     # Vérifie si le mot de passe a moins de 8 caractères
     if len(password) < 8:
         print("Mot de passe invalide : doit contenir au moins 8 caractères.")
@@ -35,8 +40,7 @@ while True:
             print("Mot de passe valide, félicitations !")
             password = hashlib.sha256(password.encode()).hexdigest()
             print(password)
-            with open("./password.json", "w") as f:
-                data = [user, password]
+            with open("./password.json", "a+") as f:
                 json.dump(data, f, indent=2)
             break
         else:
